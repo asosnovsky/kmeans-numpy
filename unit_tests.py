@@ -15,7 +15,7 @@ modules = [
 # ============================ #
 #   Util Methods
 # ============================ #
-def unify_cls_labs(labs: np.ndarray) -> np.ndarray:
+def relevel_cls_labs(labs: np.ndarray) -> np.ndarray:
     """re-level the labels
     
     Arguments:
@@ -35,6 +35,8 @@ def unify_cls_labs(labs: np.ndarray) -> np.ndarray:
 # ============================ #
 class TestModule(unittest.TestCase):
     def test_mod3(self):
+        """This test generate excatly 3 distinct classes on a 1-d plane
+        """
         data = np.array([
             [(i % 3)]
             for i in range(1000)
@@ -42,10 +44,12 @@ class TestModule(unittest.TestCase):
         for mod in modules:
             out = mod.kMeans(data, 3)
             self.assertTrue(
-                (unify_cls_labs(out[1]) == data.flatten()).all()
+                (relevel_cls_labs(out[1]) == data.flatten()).all()
             )
 
     def test_mod7(self):
+        """This test generate excatly 7 distinct classes on a 1-d plane
+        """
         data = np.array([
             [(i % 7)]
             for i in range(1000)
@@ -53,11 +57,16 @@ class TestModule(unittest.TestCase):
         for mod in modules:
             out = mod.kMeans(data, 7)
             self.assertTrue(
-                (unify_cls_labs(out[1]) == data.flatten()).all()
+                (relevel_cls_labs(out[1]) == data.flatten()).all()
             )
 
 
     def test_mod3_mod2(self):
+        """This test generate excatly 6 distinct classes on a 2-d plane
+            Note, that the end result is validated against the expected sum of the differences for each class
+                the releveled classes will be 0,1,2,3,4,5 , so their differences would be -1,-1,-1,-1,-1,5,
+                if predicted correctly, the classes will return ordered, so the process should become determenistic
+        """
         data = np.array([
             [i % 3, i % 2]
             for i in range(1000)
@@ -65,11 +74,13 @@ class TestModule(unittest.TestCase):
         for mod in modules:
             out = mod.kMeans(data, 6)
             self.assertTrue(
-                np.diff(unify_cls_labs(out[1])).sum(),
-                (1000-167)-166*5
+                np.diff(relevel_cls_labs(out[1])).sum(),
+                (999-166)-166*5
             )
 
     def test_variation_err(self):
+        """This tests ensures that the algo raises an exception during impossible cases
+        """
         data = np.array([
             [0, 0]
             for i in range(1000)
