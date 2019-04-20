@@ -20,10 +20,10 @@ def kMeans(np.ndarray data, int k, int max_iters = 1000000):
 
     cdef int N_ROWS = data.shape[0]
     cdef int N_COLS = data.shape[1]
-    cpdef np.ndarray centers_hist = np.ndarray(shape=(k, N_COLS, 2), dtype=np.float)
-    cdef np.ndarray dist_hist = np.ndarray(shape=(k, N_ROWS, 2), dtype=np.float)
-    cpdef np.ndarray label_hist = np.ndarray(shape=(N_ROWS, 3), dtype=np.int)
     cdef np.ndarray c_point
+    cdef np.ndarray dist_hist      = np.ndarray(shape=(k, N_ROWS, 2), dtype=np.float)
+    cdef np.ndarray centers_hist   = np.ndarray(shape=(k, N_COLS, 2), dtype=np.float)
+    cdef np.ndarray label_hist     = np.ndarray(shape=(N_ROWS, 3), dtype=np.int)
 
     # Checking uniqueness for initial start
     cdef np.ndarray unique_vals = np.unique(data, axis=0)

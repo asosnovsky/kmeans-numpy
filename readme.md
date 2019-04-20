@@ -1,4 +1,6 @@
-# kMeans Numpy implementation
+# kMeans Implementation Tests
+
+This repo contains 5 different implementation of the kmeans algorithmn.
 
 This implementation utilizes numpy to write a very simple implementation of kMeans. 
 

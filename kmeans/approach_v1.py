@@ -32,7 +32,7 @@ def kMeans(data: np.ndarray, k: int, max_iters=1E10) -> Tuple[np.ndarray, np.nda
     label_hist = [dist.argmin(0)]
 
     # compute first iteration manually
-    new_centers = np.array([ data[label_hist[0]==c].mean(0) for c in range(3) ])
+    new_centers = np.array([ data[label_hist[0]==c].mean(0) for c in range(k) ])
     new_dist = np.array([ ((data-c)**2).sum(1) for c in new_centers ])
     labels = new_dist.argmin(0)
 
@@ -48,7 +48,7 @@ def kMeans(data: np.ndarray, k: int, max_iters=1E10) -> Tuple[np.ndarray, np.nda
     # a while-loop limited in scope
     for _ in range(int(max_iters)):
         # recompute
-        new_centers = np.array([ data[label_hist[1]==c].mean(0) for c in range(3) ])
+        new_centers = np.array([ data[label_hist[1]==c].mean(0) for c in range(k) ])
         new_dist = np.array([ ((data-c)**2).sum(1) for c in new_centers ])
         labels = new_dist.argmin(0)
 
