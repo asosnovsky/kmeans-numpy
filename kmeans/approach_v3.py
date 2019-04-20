@@ -1,6 +1,7 @@
-from random import sample
-from typing import List, Tuple
 import numpy as np
+from random import sample
+from typing import Tuple
+from .cy.recompute_center_points import recompute_center_points
 
 class KmeansVariationErr(Exception): pass
 
@@ -35,13 +36,7 @@ def kMeans(data: np.ndarray, k: int, max_iters=1E10) -> Tuple[np.ndarray, np.nda
     label_hist[:,0] = dist.argmin(0)
 
     # compute first iteration manually
-    new_centers = np.ndarray(shape=centers.shape, dtype=float)
-    new_dist = np.ndarray(shape=dist.shape, dtype=float)
-    for c in range(k):
-        c_point = data[label_hist[:, 0] == c].mean(0)
-        new_dist[c, :] = ((data-c_point)**2).sum(1)
-        new_centers[c, :] = c_point
-    labels = new_dist.argmin(0)
+    labels, new_dist, new_centers = recompute_center_points(data, label_hist[:,0], k)
 
     # Simply return if no movement occured
     if (labels == label_hist[:,0]).all():
@@ -55,13 +50,7 @@ def kMeans(data: np.ndarray, k: int, max_iters=1E10) -> Tuple[np.ndarray, np.nda
     # a while-loop limited in scope
     for _ in range(int(max_iters)):
         # recompute
-        new_centers = np.ndarray(shape=centers.shape, dtype=float)
-        new_dist = np.ndarray(shape=dist.shape, dtype=float)
-        for c in range(k):
-            c_point = data[label_hist[:, 1] == c].mean(0)
-            new_dist[c, :] = ((data-c_point)**2).sum(1)
-            new_centers[c, :] = c_point
-        labels = new_dist.argmin(0)
+        labels, new_dist, new_centers = recompute_center_points(data, label_hist[:,1], k)
 
         # check if same as last
         if (labels == label_hist[:, 1]).all():

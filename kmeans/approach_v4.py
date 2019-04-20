@@ -1,3 +1,4 @@
+from typing import Tuple
 from random import sample
 import numpy as np
 
@@ -5,7 +6,7 @@ class KmeansVariationErr(Exception):
     pass
 
 
-def kMeans(data: np.ndarray, k: int, max_iters: int = 1000000) -> np.ndarray:
+def kMeans(data: np.ndarray, k: int, max_iters=1E10) -> Tuple[np.ndarray, np.ndarray]:
     """An implementation of the kMeans algorithmn using numpy
 
     Arguments:

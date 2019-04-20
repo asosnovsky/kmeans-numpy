@@ -1,5 +1,5 @@
 import numpy as np
-from kmeans import kMeans, KmeansVariationErr
+from kmeans.approach_v1 import kMeans, KmeansVariationErr
 from random import randint
 
 # Please be aware that these can be extended into unit-tests

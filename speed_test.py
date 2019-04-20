@@ -20,27 +20,34 @@ print("\n".join([
         timeit(
             number=REPS,
             stmt="kMeans(data, num_of_clusters)",
-            setup=f"from kmeans import kMeans\n{DATA_STEP} "
+            setup=f"from kmeans.approach_v1 import kMeans\n{DATA_STEP} "
         ),
         timeit(
             number=REPS,
             stmt="kMeans(data, num_of_clusters)",
-            setup=f"from kmeans_v2 import kMeans\n{DATA_STEP} "
+            setup=f"from kmeans.approach_v2 import kMeans\n{DATA_STEP} "
         ),
         timeit(
             number=REPS,
             stmt="kMeans(data, num_of_clusters)",
-            setup=f"from kmeans_v3 import kMeans\n{DATA_STEP} "
+            setup=f"from kmeans.approach_v3 import kMeans\n{DATA_STEP} "
         ),
         timeit(
             number=REPS,
             stmt="kMeans(data, num_of_clusters)",
-            setup=f"from cy_methods.kmeans import kMeans\n{DATA_STEP} "
+            setup=f"from kmeans.approach_v4 import kMeans\n{DATA_STEP} "
         ),
         timeit(
             number=REPS,
-            stmt="KMeans(n_clusters=num_of_clusters).fit(data)",
-            setup=f"from sklearn.cluster import KMeans\n{DATA_STEP}"
+            stmt="cy_kmeans(data, num_of_clusters)",
+            setup=f"from kmeans import cy_kmeans\n{DATA_STEP} "
         )
     ])
 ]))
+print("sklearn = {:.4f}ms".format(
+    1000*timeit(
+        number=REPS,
+        stmt="KMeans(n_clusters=num_of_clusters).fit(data)",
+        setup=f"from sklearn.cluster import KMeans\n{DATA_STEP}"
+    )/REPS
+))
