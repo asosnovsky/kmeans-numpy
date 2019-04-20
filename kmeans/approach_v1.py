@@ -25,7 +25,7 @@ def kMeans(data: np.ndarray, k: int, max_iters=1E10) -> Tuple[np.ndarray, np.nda
             "Not enough variation found in the provided code")
 
     # initial values
-    centers = np.array(sample(list(unique_vals), k))
+    centers = unique_vals[sample(range(unique_vals.shape[0]), k)]
     dist = np.array([ ((data-c)**2).sum(1) for c in centers ])
 
     # keep a record of labels (this will always be of size 2)

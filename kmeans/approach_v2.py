@@ -80,7 +80,7 @@ def kMeans(data: np.ndarray, k: int, max_iters=1E10) -> Tuple[np.ndarray, np.nda
         label_hist[:, 1] = labels
 
     print("WARN: Reached maximum iters, convergence not guaranteed")
-    return np.array(centers), labels
+    return centers, labels
 
 
 

@@ -35,8 +35,9 @@ print(
 )
 print(f"each test ran {REPS} times")
 
-#   Comparing the execution of various implementation
-# way  v1 = 2.8790ms
-# way  v2 = 2.9453ms
-# way  v3 = 2.9453ms
-# sklearn = 32.9870ms
+# Comparing the execution of various implementation
+# > v1 = 2.88ms(total=28.82s)
+# > v2 = 2.40ms(total=24.02s)
+# > v3 = 2.43ms(total=24.29s)
+# > v3 = 23.44ms(total=234.39s)
+# each test ran 10000 times

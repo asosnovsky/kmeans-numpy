@@ -1,10 +1,12 @@
 # kMeans Implementation Tests
 
-This repo contains 5 different implementation of the kmeans algorithmn.
+This repo contains 3 different implementation of the kmeans algorithmn.
 
-This implementation utilizes numpy to write a very simple implementation of kMeans. 
+- v1: heavily reliant numpy version
+- v2: same as v1, but certain operations have been combined
+- v3: a cython version of v2
 
-While simple at its core, I also demonstrate that this is an efficient implementation of the algorithmn as it exceeds a common standard implementation found in the sklearn library. (see [speed_text.py](./speed_test.py))
+Additionally, I compare this implementation to the standard implementation found in the sklearn library. (see [speed_text.py](./speed_test.py))
 
 While simple at its core this implementation will assume convergance if one of the following conditions is met:
 
@@ -20,4 +22,16 @@ Additionally, this implementation provide us with the following guards:
 
 1. [kmeans.py](./kmeans.py): the location of the implementation
 2. [example.py](./example.py): the example of how the algo runs
-3. [speed_test.py](./speed_test.py): a speed test compared against sklearn
+3. [unit_tests.py](./unit_tests.py): some unit tests that ensure some basic errors are caught and that all algorithmns provide similar outputs
+4. [speed_test.py](./speed_test.py): a speed test compared against sklearn
+
+# Speed Test Results
+
+
+| Version | Time per round | Total Time | Number of rounds |
+|---------|----------------|------------|------------------|
+| v1      | 2.88ms         | 28.82s     | 10,000 |
+| v2 | 2.40ms | 26.01s | 10,000 |
+| v3 (v2-cy) | 2.43ms | 24.29s | 10,000 |
+| benchmark (sklearn) | 23.44ms | 234.39s | 10,000 | 
+
