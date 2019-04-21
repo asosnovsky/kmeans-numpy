@@ -20,7 +20,7 @@ Additionally, this implementation provide us with the following guards:
 
 # File Descriptions
 
-1. [kmeans.py](./kmeans.py): the location of the implementation
+1. [kmeans](./kmeans): the location of the various implementations
 2. [example.py](./example.py): the example of how the algo runs
 3. [unit_tests.py](./unit_tests.py): some unit tests that ensure some basic errors are caught and that all algorithmns provide similar outputs
 4. [speed_test.py](./speed_test.py): a speed test compared against sklearn
