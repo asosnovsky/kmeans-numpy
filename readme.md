@@ -2,9 +2,9 @@
 
 This repo contains 3 different implementation of the kmeans algorithmn.
 
-- v1: heavily reliant numpy version
-- v2: same as v1, but certain operations have been combined
-- v3: a cython version of v2
+- [v1](./kmeans/approach_v1.py): heavily reliant numpy version
+- [v2](./kmeans/approach_v2.py): same as v1, but certain operations have been combined
+- [v3](./kmeans/cy/kmeans.pyx): a cython version of v2
 
 Additionally, I compare this implementation to the standard implementation found in the sklearn library. (see [speed_text.py](./speed_test.py))
 
