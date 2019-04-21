@@ -31,7 +31,7 @@ Additionally, this implementation provide us with the following guards:
 | Version | Time per round | Total Time | Number of rounds |
 |---------|----------------|------------|------------------|
 | v1      | 2.88ms         | 28.82s     | 10,000 |
-| v2 | 2.40ms | 26.01s | 10,000 |
+| v2 | 2.40ms | 24.02s | 10,000 |
 | v3 (v2-cy) | 2.43ms | 24.29s | 10,000 |
 | benchmark (sklearn) | 23.44ms | 234.39s | 10,000 | 
 
